@@ -12,8 +12,8 @@ namespace CarRent.Car.Api.v1
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok()
-            return new CarResponseDto[]
+            return Ok(
+            new CarResponseDto[]
             {
                 new CarResponseDto
                 {
@@ -23,7 +23,7 @@ namespace CarRent.Car.Api.v1
                     Type = "SUV",
                     CarClass = "Luxury"
                 }
-            };
+            });
         }
 
         // GET api/<CarController>/5
