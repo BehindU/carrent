@@ -7,6 +7,8 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    using CarRent.Car.Domain;
+
     public class Tests
     {
         [Fact]
@@ -16,6 +18,9 @@
             g.MyEvent += G_MyEvent;
             g.MyEvent += G_MyEvent;
             g.Foo();
+
+            var carClass = new CarClass();
+            var x = new Car();
         }
 
         private void G_MyEvent()
