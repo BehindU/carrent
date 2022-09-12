@@ -1,9 +1,9 @@
 ﻿namespace CarRent.Car.Domain
 {
-    public class Car
-    {
-        public Guid Id { get; }
+    using CarRent.Common.Domain;
 
+    public class Car : Entity, IAggregateRoot
+    {
         public string CarNumber { get; }
 
         public CarClass CarClass { get; }

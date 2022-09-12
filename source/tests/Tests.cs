@@ -12,15 +12,10 @@
     public class Tests
     {
         [Fact]
-        public void Foo()
+        public void CarDomain()
         {
-            var g = new MyGraph();
-            g.MyEvent += G_MyEvent;
-            g.MyEvent += G_MyEvent;
-            g.Foo();
-
-            var carClass = new CarClass();
-            var x = new Car();
+            var car1 = new Car();
+            var car2 = new Car();
         }
 
         private void G_MyEvent()
@@ -43,5 +38,37 @@
                 item.DynamicInvoke();
             }
         }
+    }
+
+
+    public class Register
+    {
+        private Sale _currentSale;
+
+        public void Pay()
+        {
+            _currentSale.Pay();
+        }
+    }
+
+
+    public class Sale
+    {
+        private readonly List<SaleLineItem> _saleLineItems;
+
+        public IReadOnlyList<SaleLineItem> SaleLineItems => _saleLineItems;
+
+        public Payment Payment { get; private set; }
+
+        public void CreateSaleLineItem(int quatity, ProductSpec spec)
+        {
+            _saleLineItems.Add(new SaleLineItem(/* 7, xxx */));
+        }
+
+        public void Pay()
+        {
+            Payment = new Payment();
+        }
+        
     }
 }

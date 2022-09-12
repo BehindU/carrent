@@ -1,17 +1,9 @@
 ﻿namespace CarRent.Car.Domain
 {
-    public interface ICarRepository
+    using CarRent.Common.Domain;
+
+    public interface ICarRepository : IRepository<Car>
     {
-        Car GetById(Guid id);
-
         Car GetByCarNumber(string carNumber);
-
-        // ..
-
-        void Add(Car car);
-
-        void Update(Car car);
-
-        void Remove(Car car);
     }
 }

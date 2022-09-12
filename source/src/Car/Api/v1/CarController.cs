@@ -2,28 +2,36 @@
 
 namespace CarRent.Car.Api.v1
 {
+    using CarRent.Car.Domain;
+
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/v1/car")]
     [ApiController]
     public class CarController : ControllerBase
     {
+        private readonly ICarRepository _repository;
+
+        public CarController(ICarRepository repository)
+        {
+            _repository = repository;
+        }
+
         // GET: api/<CarController>
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(
-            new CarResponseDto[]
+            var cars = _repository.GetAll();
+            var carDtos = cars.Select(c => new CarResponseDto
             {
-                new CarResponseDto
-                {
-                    CarId = Guid.NewGuid(),
-                    CarNumber = "XW82",
-                    Brand = "Audi",
-                    Type = "SUV",
-                    CarClass = "Luxury"
-                }
+                CarId = c.Id,
+                CarNumber = c.CarNumber,
+                Brand = c.Brand.Name,
+                Type = c.Type.Name,
+                CarClass = c.CarClass.Name
             });
+            return Ok(carDtos);
+            
         }
 
         // GET api/<CarController>/5
